@@ -1,0 +1,14 @@
+#!/bin/bash
+
+screenstatus=$(xrandr --current|grep -c "inverted (")
+
+if [ $screenstatus == 0 ]
+then
+	xinput set-prop 15 170 -1 0 1 0 -1 1 0 0 1 #inverted
+	xrandr --output eDP1 --rotate inverted
+	echo "your screen orientation is inverted"
+else
+	xinput set-prop 15 170 1 0 0 0 1 0 0 0 1   #normal
+	xrandr --output eDP1 --rotate normal
+	echo "your screen orientation is normal"
+fi
